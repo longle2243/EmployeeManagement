@@ -37,6 +37,7 @@
 								<th>Name</th>
 								<th>Contact</th>
 								<th>Email</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,6 +45,9 @@
 								<td th:text="${Employee.name}" />
 								<td th:text="${Employee.contact}" />
 								<td th:text="${Employee.email}" />
+								<td><a class="btn btn-info"
+									th:href="@{'/edituserEmployee/' + ${Employee.idemp}}">Edit</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

@@ -25,4 +25,7 @@ public class AssignmentSv {
 	public List<Object[]> getSalary(String start, String end, Integer idemp) {
 		return repo.salary(start,end,idemp);
 	}
+	public List<Assignment> listUserAssign(int idemp) {
+		return repo.listUserAssign(idemp);
+	}
 }

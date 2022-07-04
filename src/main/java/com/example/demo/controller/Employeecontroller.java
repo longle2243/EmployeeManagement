@@ -38,7 +38,7 @@ public class Employeecontroller {
 	public String viewHomePage(Model model) {
 		List<Employee> listEmployee = service.listAll();
 		model.addAttribute("listEmployee", listEmployee);
-		
+
 		List<Position> listPosition = service1.listAll();
 		model.addAttribute("listPosition", listPosition);
 		return "viewEmployee";
@@ -74,22 +74,28 @@ public class Employeecontroller {
 		service.delete(id);
 		return "redirect:/viewEmployee";
 	}
-	
-	//USER
+
+	// USER	PAGE
 	@RequestMapping("/info")
-	public String viewuser(Authentication auth, Model model) { 
+	public String viewuser(Authentication auth, Model model) {
 		model.addAttribute("listEmployee", service.getinfouser(auth.getName()));
 		return "viewuserEmployee";
 	}
-	@RequestMapping("/edituserEmployee")
-	public ModelAndView showEdituseremployee(@PathVariable(name = "id") int id, Model model,Authentication auth) {
-		model.addAttribute("listEmployee1", service.getinfouser(auth.getName()));
-		ModelAndView mav = new ModelAndView("editEmployee");
+
+	@RequestMapping("/edituserEmployee/{id}")
+	public ModelAndView showEdituserProductPage(@PathVariable(name = "id") int id, Model model) {
+		ModelAndView mav = new ModelAndView("edituserEmployee");
 		Employee Employee = service.get(id);
 		mav.addObject("employee", Employee);
 		List<Position> listPosition = service1.listAll();
 		model.addAttribute("listposition", listPosition);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/saveuserEmployee", method = RequestMethod.POST)
+	public String saveEmployeeuser(@ModelAttribute("Employee") Employee Employee) {
+		service.save(Employee);
+		return "redirect:/info";
 	}
 
 	// LOGN IN USER
@@ -101,34 +107,34 @@ public class Employeecontroller {
 		model.addAttribute("userForm", new Employee());
 		return "registration";
 	}
-	
-	@PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") Employee userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-        service.save(userForm);
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-        return "redirect:/info";
-    }
 
-    @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (securityService.isAuthenticated()) {
-            return "redirect:/info";
-        }
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-        return "login";
-    }
-    
-    // Change UI LogIn Admin User (Employee - info)
-    @GetMapping({"/", "/user"})
-    public String welcome(Model model) {
-    	return "redirect:/info"; 
-    }
+	@PostMapping("/registration")
+	public String registration(@ModelAttribute("userForm") Employee userForm, BindingResult bindingResult) {
+		userValidator.validate(userForm, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "registration";
+		}
+		service.save(userForm);
+		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+		return "redirect:/info";
+	}
+
+	@GetMapping("/login")
+	public String login(Model model, String error, String logout) {
+		if (securityService.isAuthenticated()) {
+			return "redirect:/info";
+		}
+		if (error != null)
+			model.addAttribute("error", "Your username and password is invalid.");
+		if (logout != null)
+			model.addAttribute("message", "You have been logged out successfully.");
+		return "login";
+	}
+
+	// Change UI LogIn Admin User (Employee - info)
+	@GetMapping({ "/", "/user" })
+	public String welcome(Model model) {
+		return "redirect:/info";
+	}
 
 }

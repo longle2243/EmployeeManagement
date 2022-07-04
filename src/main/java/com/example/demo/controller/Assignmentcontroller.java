@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Assignment;
+import com.example.demo.model.Employee;
 import com.example.demo.model.Job;
 import com.example.demo.model.Registration;
 import com.example.demo.service.AssignmentSv;
+import com.example.demo.service.EmployeeSv;
 import com.example.demo.service.JobSv;
 import com.example.demo.service.RegistrationSv;
 
@@ -27,7 +30,8 @@ public class Assignmentcontroller {
 	private JobSv servicecv;
 	@Autowired
 	private RegistrationSv service1;
-	
+	@Autowired
+	private EmployeeSv service;
 	@GetMapping("/viewAssignment")
 	public String viewindex(Model model) {
 		model.addAttribute("listAssignment",assignmentSv.listAll());
@@ -82,9 +86,16 @@ public class Assignmentcontroller {
 	}
 	
 	//USER
+//	@GetMapping("/viewuserAssignment")
+//	public String viewuserassignment(Model model) {
+//		model.addAttribute("listAssignment",assignmentSv.listAll());
+//		return "viewuserAssignment";
+//	}
+	
 	@GetMapping("/viewuserAssignment")
-	public String viewuserassignment(Model model) {
-		model.addAttribute("listAssignment",assignmentSv.listAll());
+	public String viewuserassignment(Model model, Authentication auth) {
+		Employee e = service.findByUsername(auth.getName());
+		model.addAttribute("listAssignment",assignmentSv.listUserAssign(e.getIdemp()));
 		return "viewuserAssignment";
 	}
 }
