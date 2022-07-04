@@ -33,7 +33,7 @@
 			<div class="card-body">
 
 				<form action="#" th:action="@{/saveAssignment}"
-					th:object="${Assignment}" method="post">
+					th:object="${assignment}" method="post">
 					<div class="mb-3">
 						<label>ID:</label> <input type="text" class="form-control"
 							th:field="*{idass}" readonly="readonly">
@@ -61,40 +61,40 @@
 					<div id="dd" class="hidden">
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
-								th:field="*{Registration}">
-								<option th:each="Registration : ${listRegistrationAll}"
-									th:value="${Registration.employee.idemp}"
-									th:text="${Registration.employee.name}"></option>
+								th:field="*{registration}">
+								<option th:each="registration : ${listregistrationAll}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
 					<div id="dw" class="hidden">
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
-								th:field="*{Registration}">
-								<option th:each="Registration : ${listRegistrationM}"
-									th:value="${Registration.employee.idemp}"
-									th:text="${Registration.employee.name}"></option>
+								th:field="*{registration}">
+								<option th:each="registration : ${listregistrationM}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
 					<div id="dm" class="hidden">
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
-								th:field="*{Registration}">
-								<option th:each="Registration : ${listRegistrationA}"
-									th:value="${Registration.employee.idemp}"
-									th:text="${Registration.employee.name}"></option>
+								th:field="*{registration}">
+								<option th:each="registration : ${listregistrationA}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
 					<div id="dy" class="hidden">
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
-								th:field="*{Registration}">
-								<option th:each="Registration : ${listRegistrationE}"
-									th:value="${Registration.employee.idemp}"
-									th:text="${Registration.employee.name}"></option>
+								th:field="*{registration}">
+								<option th:each="registration : ${listregistrationE}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
