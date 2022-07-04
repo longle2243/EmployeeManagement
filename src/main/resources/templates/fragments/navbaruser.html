@@ -19,11 +19,11 @@
 				</span>
 			</a></li>
 
-<!-- 			<li><a href="@{/edituserEmployee}" class="nav-link text-white"> <span> <i -->
-<!-- 						class="fa-solid fa-marker"></i>&nbsp;&nbsp; EDIT INFO -->
-<!-- 				</span> -->
-<!-- 			</a></li> -->
-			
+			<!-- 			<li><a href="@{/edituserEmployee}" class="nav-link text-white"> <span> <i -->
+			<!-- 						class="fa-solid fa-marker"></i>&nbsp;&nbsp; EDIT INFO -->
+			<!-- 				</span> -->
+			<!-- 			</a></li> -->
+
 			<li><a th:href="@{/viewuserRegistration}"
 				class="nav-link text-white"> <span> <i
 						class="fa-solid fa-calendar"></i>&nbsp;&nbsp; REGISTRATION
@@ -41,6 +41,17 @@
 						class="fa-solid fa-chart-simple"></i>&nbsp;&nbsp; SALARY
 				</span>
 			</a></li>
+
+			<div sec:authorize="isAuthenticated()">
+				<form id="logoutForm" method="POST" th:action="@{/logout}">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+			</div>
+			<li><a class="nav-link text-white"
+				onclick="document.forms['logoutForm'].submit()"><span> <i
+						class="fas fa-sign-out"></i>&nbsp;&nbsp; LOG OUT
+				</span> </a></li>
 		</ul>
 	</div>
 </body>

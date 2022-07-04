@@ -8,14 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Assignment;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Job;
+import com.example.demo.model.Position;
 import com.example.demo.model.Registration;
 import com.example.demo.service.AssignmentSv;
 import com.example.demo.service.EmployeeSv;
@@ -85,6 +88,33 @@ public class Assignmentcontroller {
 	    return "createAssignment";
 	}
 	
+	@RequestMapping("/editAssignment/{id}")
+	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id, Model model) {
+		ModelAndView mav = new ModelAndView("editAssignment");
+		Assignment Assignment = assignmentSv.get(id);
+		
+		mav.addObject("assignment", Assignment);
+		
+	    List<Job> listJob= servicecv.listAll();
+	    model.addAttribute("listJob", listJob);
+	    
+		List<Registration> listRegistration = service1.listAll();
+		model.addAttribute("listregistrationAll", listRegistration);
+	    List<Registration> listJobSang= service1.Jobsang();
+	    model.addAttribute("listregistrationM", listJobSang);
+	    List<Registration> listJobChieu= service1.Jobchieu();
+	    model.addAttribute("listregistrationA", listJobChieu);
+	    List<Registration> listJobToi= service1.Jobtoi();
+	    model.addAttribute("listregistrationE", listJobToi);
+
+		return mav;
+	}
+
+	@RequestMapping("/deleteAssignment/{id}")
+	public String deleteProduct(@PathVariable(name = "id") int id) {
+		assignmentSv.delete(id);
+		return "redirect:/viewAssignment";
+	}
 	//USER
 //	@GetMapping("/viewuserAssignment")
 //	public String viewuserassignment(Model model) {

@@ -31,22 +31,39 @@
 				<h2>All Salary</h2>
 			</div>
 			<div class="card-body">
-			<form action="#" th:action="@{/salaryall}" method="POST">
-				<div class="mb-3">
-					<label>Start:</label> <input type="date" id="start" name="start">
-				</div>
-				<div class="mb-3">
-					<label>End:</label> <input type="date" id="end" name="end">
-				</div>
-				<div class="text-center">
-					<button type="submit" class="btn btn-success text-white text-center">Apply</button>
-				</div>
-			</form>
+				<form action="#" th:action="@{/salaryall}" method="POST">
+					<div class="mb-3">
+						<label>Start:</label> <input type="date" id="start" name="start">
+					</div>
+					<div class="mb-3">
+						<label>End:</label> <input type="date" id="end" name="end">
+					</div>
+					<div class="text-center">
+						<button type="submit"
+							class="btn btn-success text-white text-center">Apply</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/js/sidebars.js}"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var dd = today.getDate() - 1;
+		var mm = today.getMonth() + 1;
+		var yyyy = today.getFullYear();
+		if (dd < 10) {
+			dd = '0' + dd;
+		}
+		if (mm < 10) {
+			mm = '0' + mm;
+		}
+
+		today = yyyy + '-' + mm + '-' + dd;
+		document.getElementById("start").setAttribute("max", today);
+		document.getElementById("end").setAttribute("max", today);
+	</script>
 </body>
 </html>
 

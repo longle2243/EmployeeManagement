@@ -5,7 +5,8 @@
 <title>Header</title>
 </head>
 <body>
-	<div class="d-flex flex-column  flex-shrink-0 p-3 text-white bg-primary"
+	<div
+		class="d-flex flex-column  flex-shrink-0 p-3 text-white bg-primary"
 		style="width: 280px;" th:fragment="header">
 		<a th:href="@{/info}"
 			class="d-flex align-items-center mb-3 mb-md-0 me-md-auto nav-link text-white text-decoration-none">
@@ -13,25 +14,44 @@
 		</a>
 		<hr>
 		<ul class="nav nav-pills flex-column mb-auto">
-			<li><a th:href="@{/viewEmployee}" class="nav-link text-white"> <span>
-				<i class="fa-solid fa-id-card"></i>&nbsp;&nbsp; EMPLOYEE</span>
-			</a></li>
-			
-			<li><a th:href="@{/viewPosition}" class="nav-link text-white"> <span> 
-				<i class="fa-solid fa-marker"></i>&nbsp;&nbsp; POSITION</span>
-			</a></li>
-			
-			<li><a th:href="@{/viewJob}" class="nav-link text-white"> <span> 
-				<i class="fa-solid fa-briefcase"></i>&nbsp;&nbsp; JOB</span>
+			<li><a th:href="@{/viewEmployee}" class="nav-link text-white">
+					<span> <i class="fa-solid fa-id-card"></i>&nbsp;&nbsp;
+						EMPLOYEE
+				</span>
 			</a></li>
 
-			<li><a th:href="@{/viewAssignment}" class="nav-link text-white"> <span>
-				<i class="fa-solid fa-calendar"></i>&nbsp;&nbsp; ASSIGNMENT</span>
+			<li><a th:href="@{/viewPosition}" class="nav-link text-white">
+					<span> <i class="fa-solid fa-marker"></i>&nbsp;&nbsp;
+						POSITION
+				</span>
 			</a></li>
-			
-			<li><a th:href="@{/filterallsalary}" class="nav-link text-white"> <span> 
-				<i class="fa-solid fa-chart-simple"></i>&nbsp;&nbsp; PAY SHEET</span>
+
+			<li><a th:href="@{/viewJob}" class="nav-link text-white"> <span>
+						<i class="fa-solid fa-briefcase"></i>&nbsp;&nbsp; JOB
+				</span>
 			</a></li>
+
+			<li><a th:href="@{/viewAssignment}" class="nav-link text-white">
+					<span> <i class="fa-solid fa-calendar"></i>&nbsp;&nbsp;
+						ASSIGNMENT
+				</span>
+			</a></li>
+
+			<li><a th:href="@{/filterallsalary}" class="nav-link text-white">
+					<span> <i class="fa-solid fa-chart-simple"></i>&nbsp;&nbsp;
+						PAY SHEET
+				</span>
+			</a></li>
+			<div sec:authorize="isAuthenticated()">
+				<form id="logoutForm" method="POST" th:action="@{/logout}">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+			</div>
+			<li><a class="nav-link text-white"
+				onclick="document.forms['logoutForm'].submit()"><span> <i
+						class="fas fa-sign-out"></i>&nbsp;&nbsp; LOG OUT
+				</span> </a></li>
 		</ul>
 	</div>
 </body>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Assignment;
+import com.example.demo.model.Employee;
 import com.example.demo.repository.AssignmentRepo;
 
 @Service
@@ -19,6 +20,15 @@ public class AssignmentSv {
 	public void save(Assignment ent) {
 		repo.save(ent);
 	}
+	
+	public Assignment get(int id) {
+		return repo.findById(id).get();
+	}
+
+	public void delete(int id) {
+		repo.deleteById(id);
+	}
+	
 	public List<Object[]> getAllSalary(String start, String end) {
 		return repo.allsalary(start,end);
 	}
