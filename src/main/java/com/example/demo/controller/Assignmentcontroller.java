@@ -72,11 +72,11 @@ public class Assignmentcontroller {
 	    
 		List<Registration> listRegistration = service1.listAll();
 		model.addAttribute("listregistrationAll", listRegistration);
-	    List<Object[]> listJobSang= service1.Jobsang();
+	    List<Registration> listJobSang= service1.Jobsang();
 	    model.addAttribute("listregistrationM", listJobSang);
-	    List<Object[]> listJobChieu= service1.Jobchieu();
+	    List<Registration> listJobChieu= service1.Jobchieu();
 	    model.addAttribute("listregistrationA", listJobChieu);
-	    List<Object[]> listJobToi= service1.Jobtoi();
+	    List<Registration> listJobToi= service1.Jobtoi();
 	    model.addAttribute("listregistrationE", listJobToi);
 	    return "createAssignment";
 	}

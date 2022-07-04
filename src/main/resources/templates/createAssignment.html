@@ -68,8 +68,9 @@
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
 								th:field="*{registration.idreg}">
-								<option th:each="employee : ${listregistrationM}"
-									th:value="${employee[0]}" th:text="${employee[1]}"></option>
+								<option th:each="registration : ${listregistrationM}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
@@ -77,8 +78,9 @@
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
 								th:field="*{registration.idreg}">
-								<option th:each="employee : ${listregistrationA}"
-									th:value="${employee[0]}" th:text="${employee[1]}"></option>
+								<option th:each="registration : ${listregistrationA}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>
@@ -86,8 +88,9 @@
 						<div class="mb-3">
 							<label>Executor:</label> <select class="form-control"
 								th:field="*{registration.idreg}">
-								<option th:each="employee : ${listregistrationE}"
-									th:value="${employee[0]}" th:text="${employee[1]}"></option>
+								<option th:each="registration : ${listregistrationE}"
+									th:value="${registration.employee.idemp}"
+									th:text="${registration.employee.name}"></option>
 							</select>
 						</div>
 					</div>

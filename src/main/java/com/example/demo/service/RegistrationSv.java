@@ -33,15 +33,15 @@ public class RegistrationSv {
 	}
 	
 	// VIET THEM
-	public List<Object[]> Jobsang() {
+	public List<Registration> Jobsang() {
 		return repo.congviecbuoisang();
 	}
 
-	public List<Object[]> Jobchieu() {
+	public List<Registration> Jobchieu() {
 		return repo.congviecbuoichieu();
 	}
 
-	public List<Object[]> Jobtoi() {
+	public List<Registration> Jobtoi() {
 		return repo.congviecbuoitoi();
 	}
 	
