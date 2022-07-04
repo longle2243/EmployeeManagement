@@ -54,11 +54,11 @@ public class Assignmentcontroller {
 		return "salaryall";
 	}
 	
-	@PostMapping("/salaryuser")
-	public String viewtest(@RequestParam(value="start") String start ,@RequestParam(value="end") String end,@RequestParam(value="idemp") Integer idemp, Model model) {
-		model.addAttribute("listchitiet",assignmentSv.getSalary(start,end,idemp));
-		return "salaryuser";
-	}
+//	@PostMapping("/salaryuser")
+//	public String viewtest(@RequestParam(value="start") String start ,@RequestParam(value="end") String end,@RequestParam(value="idemp") Integer idemp, Model model) {
+//		model.addAttribute("listchitiet",assignmentSv.getSalary(start,end,idemp));
+//		return "salaryuser";
+//	}
 	
 	@RequestMapping(value = "/saveAssignment", method = RequestMethod.POST)
 	public String saveAssignment(@ModelAttribute("Assignment") Assignment Assignment) {
@@ -97,6 +97,13 @@ public class Assignmentcontroller {
 		Employee e = service.findByUsername(auth.getName());
 		model.addAttribute("listAssignment",assignmentSv.listUserAssign(e.getIdemp()));
 		return "viewuserAssignment";
+	}
+	
+	@PostMapping("/salaryuser")
+	public String viewtest(@RequestParam(value="start") String start ,@RequestParam(value="end") String end, Authentication auth, Model model) {
+		Employee e = service.findByUsername(auth.getName());
+		model.addAttribute("listchitiet",assignmentSv.getSalary(start,end,e.getIdemp()));
+		return "salaryuser";
 	}
 }
 
