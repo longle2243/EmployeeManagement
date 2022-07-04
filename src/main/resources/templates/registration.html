@@ -42,14 +42,14 @@
 				
 				<div class="mb-3">
 					<input type="text" th:field="*{username}" class="form-control"
-						placeholder="Username" autofocus="true" id="username"
+						placeholder="Username least 8 characters" autofocus="true" id="username"
 						name="username"> <span class="has-error"
 						th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 				</div>
 
 				<div class="mb-3">
 					<input type="password" th:field="*{password}" class="form-control"
-						placeholder="Password"> <span class="has-error"
+						placeholder="Password least 8 characters"> <span class="has-error"
 						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 				</div>
 
